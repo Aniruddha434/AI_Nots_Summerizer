@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { FileText, History, Brain } from 'lucide-react'
+import { FileText, History, Brain, Info } from 'lucide-react'
 import Logo from './Logo'
 import { useAuth } from '../context/AuthContext'
 
@@ -10,13 +10,15 @@ function Layout({ children }) {
   const navigation = [
     { name: 'Home', href: '/', icon: Brain, current: location.pathname === '/' },
     { name: 'History', href: '/history', icon: History, current: location.pathname === '/history' },
+    { name: 'About', href: '/about', icon: Info, current: location.pathname === '/about' },
   ]
 
-  // Check if current page is an auth page
+  // Check if current page is an auth page or about page
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup'
+  const isAboutPage = location.pathname === '/about'
 
-  // For auth pages, return minimal layout
-  if (isAuthPage) {
+  // For auth pages and about page, return minimal layout
+  if (isAuthPage || isAboutPage) {
     return (
       <div className="min-h-screen">
         {children}
@@ -111,26 +113,28 @@ function Layout({ children }) {
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-500">
-              © 2024 TextSummarizer. Powered by AI.
+              © 2024 AI Notes Summarizer. Developed by Aniruddha Gayki for MongoDesk Internship.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
               >
-                Privacy
+                About
+              </Link>
+              <a
+                href="https://github.com/Aniruddha434/AI_Nots_Summerizer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                GitHub
               </a>
               <a
-                href="#"
+                href="mailto:aniruddhagayki0@gmail.com"
                 className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
               >
-                Terms
-              </a>
-              <a
-                href="#"
-                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-              >
-                Support
+                Contact
               </a>
             </div>
           </div>

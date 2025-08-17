@@ -6,6 +6,7 @@ import Summary from './pages/Summary'
 import History from './pages/History'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import About from './pages/About'
 import { AppProvider } from './context/AppContext'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Layout>
     </AppProvider>
