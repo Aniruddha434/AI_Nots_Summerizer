@@ -1,6 +1,4 @@
 import express from 'express';
-import fs from 'fs/promises';
-import path from 'path';
 import { Transcript } from '../models/index.js';
 import upload, { handleUploadError } from '../middleware/upload.js';
 import { validateTranscript } from '../middleware/validation.js';
@@ -16,15 +14,15 @@ router.post('/', uploadLimiter, upload.single('file'), handleUploadError, async 
     
     // Handle file upload
     if (req.file) {
-      Logger.info('Processing file upload', { 
+      Logger.info('Processing file upload', {
         filename: req.file.originalname,
         size: req.file.size,
         mimetype: req.file.mimetype
       });
 
-      // Read file content
-      const fileContent = await fs.readFile(req.file.path, 'utf-8');
-      
+      // Read file content from memory buffer
+      const fileContent = req.file.buffer.toString('utf-8');
+
       transcriptData = {
         text: fileContent.trim(),
         originalFilename: req.file.originalname,
@@ -32,16 +30,8 @@ router.post('/', uploadLimiter, upload.single('file'), handleUploadError, async 
         uploadMethod: 'file'
       };
 
-      // Clean up uploaded file
-      try {
-        await fs.unlink(req.file.path);
-        Logger.debug('Temporary file cleaned up', { path: req.file.path });
-      } catch (cleanupError) {
-        Logger.warn('Failed to clean up temporary file', { 
-          path: req.file.path,
-          error: cleanupError.message 
-        });
-      }
+      // No need to clean up files since we're using memory storage
+      Logger.debug('File processed from memory buffer');
     }
     // Handle text input
     else if (req.body.text) {
@@ -111,15 +101,8 @@ router.post('/', uploadLimiter, upload.single('file'), handleUploadError, async 
 
   } catch (error) {
     Logger.error('Error uploading transcript', error);
-    
-    // Clean up file if it exists and there was an error
-    if (req.file) {
-      try {
-        await fs.unlink(req.file.path);
-      } catch (cleanupError) {
-        Logger.warn('Failed to clean up file after error', cleanupError);
-      }
-    }
+
+    // No file cleanup needed since we're using memory storage
 
     // Handle validation errors
     if (error.name === 'ValidationError') {
