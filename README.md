@@ -21,7 +21,7 @@ A full-stack application that uses AI to summarize meeting transcripts and share
 
 This section documents my journey building this AI-powered application from scratch as part of my MongoDesk internship assignment.
 
-### 🎯 Phase 1: Planning and Architecture (Day 1-2)
+### 🎯 Step 1: Planning and Architecture
 
 **The Challenge**: Create a full-stack application that can intelligently summarize meeting notes using AI.
 
@@ -34,7 +34,7 @@ This section documents my journey building this AI-powered application from scra
 
 I spent time researching the best practices for each technology and planning how they would work together.
 
-### 🏗️ Phase 2: Backend Foundation (Day 3-5)
+### 🏗️ Step 2: Backend Foundation
 
 **Setting up the Server**: I began with the backend because I wanted to establish the data flow first. I created:
 
@@ -45,7 +45,7 @@ I spent time researching the best practices for each technology and planning how
 
 **Key Learning**: I initially used disk storage for file uploads, but later learned this doesn't work well with cloud deployments. I had to refactor to use memory storage.
 
-### 🤖 Phase 3: AI Integration (Day 6-7)
+### 🤖 Step 3: AI Integration
 
 **Connecting to Gemini AI**: This was the most exciting part! I integrated Google's Gemini API to generate intelligent summaries.
 
@@ -58,7 +58,7 @@ I spent time researching the best practices for each technology and planning how
 
 **Solution**: I created a dedicated AI service module that handles all Gemini interactions, with proper error handling and retry logic.
 
-### 🎨 Phase 4: Frontend Development (Day 8-12)
+### 🎨 Step 4: Frontend Development
 
 **Building the User Interface**: I focused on creating an intuitive, modern interface:
 
@@ -69,7 +69,7 @@ I spent time researching the best practices for each technology and planning how
 
 **Design Philosophy**: I wanted the app to feel professional yet approachable, so I used a clean design with subtle animations and clear visual hierarchy.
 
-### 🔐 Phase 5: Authentication & Security (Day 13-14)
+### 🔐 Step 5: Authentication & Security
 
 **User Management**: Implemented a complete authentication system:
 
@@ -80,7 +80,7 @@ I spent time researching the best practices for each technology and planning how
 
 **Security Measures**: Added rate limiting, input validation, and CORS configuration.
 
-### 📧 Phase 6: Email Integration (Day 15-16)
+### 📧 Step 6: Email Integration
 
 **Sharing Feature**: Built email functionality so users can share summaries:
 
@@ -90,7 +90,7 @@ I spent time researching the best practices for each technology and planning how
 
 **Personal Touch**: I chose to use standard SMTP instead of SendGrid to keep costs low and maintain flexibility.
 
-### 🚀 Phase 7: Deployment Challenges (Day 17-20)
+### 🚀 Step 7: Deployment Challenges
 
 **Going Live**: This was where I learned the most about production deployments:
 
@@ -117,7 +117,7 @@ I spent time researching the best practices for each technology and planning how
 2. **File Upload Failures**: Files weren't being saved on Render. Solution: Switched from disk storage to memory storage.
 3. **Environment Variables**: Learning the difference between build-time and runtime variables in different platforms.
 
-### 🔧 Phase 8: Testing and Refinement (Day 21-22)
+### 🔧 Step 8: Testing and Refinement
 
 **Quality Assurance**: I built comprehensive tests and refined the user experience:
 
